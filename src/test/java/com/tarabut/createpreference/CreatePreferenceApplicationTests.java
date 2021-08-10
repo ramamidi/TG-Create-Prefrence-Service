@@ -1,11 +1,10 @@
-package com.tarabut.retrievepreference;
+package com.tarabut.createpreference;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class RetrievePreferenceApplicationTests {
+public class CreatePreferenceApplicationTests {
 
     @Test
     public void contextLoads() {

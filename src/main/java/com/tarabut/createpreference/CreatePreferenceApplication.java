@@ -1,13 +1,13 @@
-package com.tarabut.retrievepreference;
+package com.tarabut.createpreference;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RetrievePreferenceApplication {
+public class CreatePreferenceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RetrievePreferenceApplication.class, args);
+        SpringApplication.run(CreatePreferenceApplication.class, args);
     }
 
 }

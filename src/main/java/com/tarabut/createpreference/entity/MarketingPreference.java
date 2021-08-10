@@ -1,4 +1,4 @@
-package com.tarabut.retrievepreference.entity;
+package com.tarabut.createpreference.entity;
 
 import lombok.Getter;
 import lombok.Setter;

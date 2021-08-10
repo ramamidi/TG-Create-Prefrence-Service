@@ -1,4 +1,4 @@
-package com.tarabut.retrievepreference.errors;
+package com.tarabut.createpreference.errors;
 
 /**
  * Not Found Exception Handler .
