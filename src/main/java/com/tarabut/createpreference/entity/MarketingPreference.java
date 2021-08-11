@@ -25,7 +25,7 @@ public class MarketingPreference {
     private Integer customerId;
     private boolean email;
     private boolean sms;
-    private String post;
+    private boolean post;
 
     public MarketingPreference() {
     }
