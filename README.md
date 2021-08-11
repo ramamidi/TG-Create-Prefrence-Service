@@ -3,9 +3,9 @@
 This is the create preference microservice that is responsible to create and update Marketing preferences of customers.
 This microservice is written in Java/Spring Boot.
 
-## Steps to run without docker
+# Steps to run without docker
 
-### Pre-requisites:
+## Pre-requisites:
 
 * Install Java 16 [Install open jdk 16 on your machine](https://openjdk.java.net/)
 * Install Gradle [Install open jdk 16 on your machine](https://gradle.org/install/)
@@ -16,17 +16,17 @@ This microservice is written in Java/Spring Boot.
 * ```cd build/libs``` folder
 * Run java -jar create-preference-service-1.0.0.jar
 
-### Steps to run using docker:
+# Steps to run using docker:
 
 * Install Docker [Install docker on your machine](https://www.docker.com/products/docker-desktop)
 
-# Docker Build
+## Docker Build
 
 ```
 docker build -t createpreference:lts .
 ```
 
-# Docker Run
+## Docker Run
 
 ```
 docker run -p 8080:8080 --init -e SPRING_PROFILES_ACTIVE='demo' --rm -d --name createpreference_service createpreference:lts
