@@ -5,6 +5,8 @@ import com.tarabut.createpreference.service.MarketingPreferenceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,8 +21,12 @@ public class MarketingPreferenceController {
 
     private final Logger log = LoggerFactory.getLogger(MarketingPreferenceController.class);
 
-    @Autowired
     private MarketingPreferenceService marketingPreferenceService;
+
+    @Autowired
+    public MarketingPreferenceController(final MarketingPreferenceService marketingPreferenceService) {
+        this.marketingPreferenceService = marketingPreferenceService;
+    }
 
     /**
      * {@code POST  /marketing-preferences} : Create a new MarketingPreference.
@@ -32,7 +38,7 @@ public class MarketingPreferenceController {
     public ResponseEntity<MarketingPreference> add(@RequestBody MarketingPreference marketingPreference) {
         log.debug("REST request to save MarketingPreference : {}", marketingPreference);
         MarketingPreference result = marketingPreferenceService.save(marketingPreference);
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(result);
     }
 
     /**
@@ -46,7 +52,7 @@ public class MarketingPreferenceController {
         log.debug("REST request to update MarketingPreference : {}", marketingPreference);
         marketingPreferenceService.findOne(marketingPreference.getId()).
                 orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find resource"));
-        return ResponseEntity.ok().body(marketingPreferenceService.save(marketingPreference));
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(marketingPreferenceService.save(marketingPreference));
     }
 
     /**

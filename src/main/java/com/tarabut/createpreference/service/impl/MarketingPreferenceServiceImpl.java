@@ -18,8 +18,12 @@ public class MarketingPreferenceServiceImpl implements MarketingPreferenceServic
 
     private final Logger log = LoggerFactory.getLogger(MarketingPreferenceServiceImpl.class);
 
+    private final MarketingPreferenceRepository marketingPreferenceRepository;
+
     @Autowired
-    MarketingPreferenceRepository marketingPreferenceRepository;
+    public MarketingPreferenceServiceImpl(final MarketingPreferenceRepository marketingPreferenceRepository) {
+        this.marketingPreferenceRepository = marketingPreferenceRepository;
+    }
 
     /**
      * Save a MarketingPreference.
