@@ -14,7 +14,7 @@ This microservice is written in Java/Spring Boot.
 
 * Run ```gradle build```
 * ```cd build/libs``` folder
-* Run java -jar create-preference-service-1.0.0.jar
+* Run java ```-jar create-preference-service-1.0.0.jar```
 
 # Run unit tests
 
