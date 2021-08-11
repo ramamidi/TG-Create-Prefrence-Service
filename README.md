@@ -1,14 +1,14 @@
 # Create Marketing Preferences Microservice
 
-This is the create preference microservice that is responsible to create and update 
-Marketing preferences of customers. This microservice is  written in Java/Spring Boot.
+This is the create preference microservice that is responsible to create and update Marketing preferences of customers.
+This microservice is written in Java/Spring Boot.
 
 ## Steps to run without docker
 
 ### Pre-requisites:
 
-* Install Java 16
-* Install Gradle
+* Install Java 16 [Install open jdk 16 on your machine](https://openjdk.java.net/)
+* Install Gradle [Install open jdk 16 on your machine](https://gradle.org/install/)
 
 ### Steps to run locally:
 
@@ -18,7 +18,7 @@ Marketing preferences of customers. This microservice is  written in Java/Spring
 
 ### Steps to run using docker:
 
-* Install Docker
+* Install Docker [Install docker on your machine](https://www.docker.com/products/docker-desktop)
 
 # Docker Build
 

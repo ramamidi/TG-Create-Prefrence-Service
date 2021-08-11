@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * REST controller for managing {@link MarketingPreference}.
@@ -26,7 +29,7 @@ public class MarketingPreferenceController {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new marketingPreference.
      */
     @PostMapping("/marketing-preferences")
-    public ResponseEntity<MarketingPreference> add(@RequestBody MarketingPreference marketingPreference){
+    public ResponseEntity<MarketingPreference> add(@RequestBody MarketingPreference marketingPreference) {
         log.debug("REST request to save MarketingPreference : {}", marketingPreference);
         MarketingPreference result = marketingPreferenceService.save(marketingPreference);
         return ResponseEntity.ok().body(result);
@@ -35,14 +38,15 @@ public class MarketingPreferenceController {
     /**
      * {@code PUT  /marketing-preferences} : Updates an existing MarketingPreference.
      *
-     * @param marketingPreference:  the marketingPreference to update.
+     * @param marketingPreference: the marketingPreference with the Id to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated marketingPreference.
      */
     @PutMapping("/marketing-preferences")
-    public ResponseEntity<MarketingPreference> update(@RequestBody MarketingPreference marketingPreference){
+    public ResponseEntity<MarketingPreference> update(@RequestBody MarketingPreference marketingPreference) {
         log.debug("REST request to update MarketingPreference : {}", marketingPreference);
-        MarketingPreference result = marketingPreferenceService.updateMarketingPreference(marketingPreference);
-        return ResponseEntity.ok().body(result);
+        marketingPreferenceService.findOne(marketingPreference.getId()).
+                orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find resource"));
+        return ResponseEntity.ok().body(marketingPreferenceService.save(marketingPreference));
     }
 
     /**
