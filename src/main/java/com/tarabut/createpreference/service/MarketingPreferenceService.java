@@ -1,6 +1,8 @@
 package com.tarabut.createpreference.service;
 
-import com.tarabut.createpreference.entity.MarketingPreference;
+import com.tarabut.createpreference.dto.GetMarketingPreferenceDTO;
+import com.tarabut.createpreference.dto.PostMarketingPreferenceDTO;
+import com.tarabut.createpreference.dto.UpdateMarketingPreferenceDTO;
 
 import java.util.Optional;
 
@@ -15,7 +17,15 @@ public interface MarketingPreferenceService {
      * @param marketingPreference the entity to save.
      * @return the persisted entity.
      */
-    MarketingPreference save(MarketingPreference marketingPreference);
+    GetMarketingPreferenceDTO save(PostMarketingPreferenceDTO marketingPreference);
+
+    /**
+     * Update a MarketingPreference.
+     *
+     * @param marketingPreference the entity to update.
+     * @return the persisted entity.
+     */
+    GetMarketingPreferenceDTO update(UpdateMarketingPreferenceDTO marketingPreference);
 
     /**
      * Find one Marketing Preference by Id
@@ -23,7 +33,7 @@ public interface MarketingPreferenceService {
      * @param id the id of the entity
      * @return the entity
      */
-    Optional<MarketingPreference> findOne(Integer id);
+    Optional<GetMarketingPreferenceDTO> findOne(Integer id);
 
 
     /**

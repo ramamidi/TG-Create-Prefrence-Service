@@ -1,5 +1,8 @@
 package com.tarabut.createpreference.service.impl;
 
+import com.tarabut.createpreference.dto.GetMarketingPreferenceDTO;
+import com.tarabut.createpreference.dto.PostMarketingPreferenceDTO;
+import com.tarabut.createpreference.dto.UpdateMarketingPreferenceDTO;
 import com.tarabut.createpreference.entity.MarketingPreference;
 import com.tarabut.createpreference.repository.MarketingPreferenceRepository;
 import com.tarabut.createpreference.service.MarketingPreferenceService;
@@ -32,8 +35,19 @@ public class MarketingPreferenceServiceImpl implements MarketingPreferenceServic
      * @return the persisted entity.
      */
     @Override
-    public MarketingPreference save(MarketingPreference marketingPreference) {
-        return marketingPreferenceRepository.save(marketingPreference);
+    public GetMarketingPreferenceDTO save(PostMarketingPreferenceDTO marketingPreference) {
+        return marketingPreferenceRepository.save(marketingPreference.toMarketingPreference()).toGetMarketingPreferenceDTO().get();
+    }
+
+    /**
+     * SavUpdatee a MarketingPreference.
+     *
+     * @param marketingPreference the entity to update.
+     * @return the persisted entity.
+     */
+    @Override
+    public GetMarketingPreferenceDTO update(UpdateMarketingPreferenceDTO marketingPreference) {
+        return marketingPreferenceRepository.save(marketingPreference.toMarketingPreference()).toGetMarketingPreferenceDTO().get();
     }
 
     /**
@@ -54,7 +68,11 @@ public class MarketingPreferenceServiceImpl implements MarketingPreferenceServic
      * @return the entity
      */
     @Override
-    public Optional<MarketingPreference> findOne(Integer id) {
-        return marketingPreferenceRepository.findById(id);
+    public Optional<GetMarketingPreferenceDTO> findOne(Integer id) {
+        Optional<MarketingPreference> optionalMarketingPreference = marketingPreferenceRepository.findById(id);
+        if (optionalMarketingPreference.isPresent()) {
+            return optionalMarketingPreference.get().toGetMarketingPreferenceDTO();
+        }
+        return Optional.empty();
     }
 }

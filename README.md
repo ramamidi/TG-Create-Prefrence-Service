@@ -58,6 +58,7 @@ docker rm createpreference_service
 
 # How to test service
 
+* Run the service and access: [Swagger](http://localhost:8080/swagger-ui.html) 
 * Install Postman or any rest client [Install postman](https://www.postman.com/downloads/)
 * Export this collection: [Collection](https://www.getpostman.com/collections/bc27d4d9912fc878d7fe)
 * eh voilà - The create preference microservice is ready to use

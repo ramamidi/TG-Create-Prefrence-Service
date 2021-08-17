@@ -1,6 +1,8 @@
 package com.tarabut.createpreference.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tarabut.createpreference.dto.PostMarketingPreferenceDTO;
+import com.tarabut.createpreference.dto.UpdateMarketingPreferenceDTO;
 import com.tarabut.createpreference.entity.MarketingPreference;
 import com.tarabut.createpreference.service.MarketingPreferenceService;
 import org.assertj.core.api.Assertions;
@@ -15,8 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -55,8 +55,8 @@ public class MarketingPreferenceControllerTest {
         marketingPreference.setSms(true);
         ObjectMapper objectMapper = new ObjectMapper();
         String requestPayload = objectMapper.writeValueAsString(marketingPreference);
-        when(marketingPreferenceService.findOne(eq(1))).thenReturn(Optional.of(marketingPreference));
-        when(marketingPreferenceService.save(any(MarketingPreference.class))).thenReturn(marketingPreference);
+        when(marketingPreferenceService.findOne(eq(1))).thenReturn(marketingPreference.toGetMarketingPreferenceDTO());
+        when(marketingPreferenceService.update(any(UpdateMarketingPreferenceDTO.class))).thenReturn(marketingPreference.toGetMarketingPreferenceDTO().get());
 
         // Act
         MvcResult mockMvcResult =
@@ -74,6 +74,31 @@ public class MarketingPreferenceControllerTest {
     }
 
     @Test
+    public void shouldNotAbleToUpdateMarketPreferenceWithInvalidData() throws Exception {
+        // Arrange
+        MarketingPreference marketingPreference = new MarketingPreference();
+        marketingPreference.setId(0);
+        marketingPreference.setCustomerId(0);
+        marketingPreference.setEmail(true);
+        marketingPreference.setPost(true);
+        marketingPreference.setSms(true);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestPayload = objectMapper.writeValueAsString(marketingPreference);
+        when(marketingPreferenceService.findOne(eq(1))).thenReturn(marketingPreference.toGetMarketingPreferenceDTO());
+        when(marketingPreferenceService.update(any(UpdateMarketingPreferenceDTO.class))).thenReturn(marketingPreference.toGetMarketingPreferenceDTO().get());
+
+        // Act
+        MvcResult mockMvcResult =
+                this.mockMvc.perform(MockMvcRequestBuilders.put("/marketing-preferences").contentType(MediaType.APPLICATION_JSON)
+                        .content(requestPayload))
+                        .andExpect(status().is(400))
+                        .andReturn();
+
+        // Assert
+        Assertions.assertThat(mockMvcResult.getResponse().getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Test
     public void shouldAbleToSave() throws Exception {
         // Arrange
         MarketingPreference marketingPreference = new MarketingPreference();
@@ -84,12 +109,12 @@ public class MarketingPreferenceControllerTest {
         marketingPreference.setSms(true);
         ObjectMapper objectMapper = new ObjectMapper();
         String requestPayload = objectMapper.writeValueAsString(marketingPreference);
-        when(marketingPreferenceService.save(any(MarketingPreference.class))).thenReturn(marketingPreference);
+        when(marketingPreferenceService.save(any(PostMarketingPreferenceDTO.class))).thenReturn(marketingPreference.toGetMarketingPreferenceDTO().get());
 
         // Act
         MvcResult mockMvcResult =
                 this.mockMvc.perform(MockMvcRequestBuilders.post("/marketing-preferences").contentType(MediaType.APPLICATION_JSON).content(requestPayload).accept(
-                                "application/json"))
+                        "application/json"))
                         .andExpect(jsonPath("$.customerId", is(notNullValue())))
                         .andExpect(jsonPath("$.customerId", is(1)))
                         .andExpect(jsonPath("$.email", is(true)))
