@@ -1,6 +1,6 @@
-package com.tarabut.createpreference.repository;
+package com.rama.createpreference.repository;
 
-import com.tarabut.createpreference.entity.MarketingPreference;
+import com.rama.createpreference.entity.MarketingPreference;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,8 +1,8 @@
-package com.tarabut.createpreference.service;
+package com.rama.createpreference.service;
 
-import com.tarabut.createpreference.dto.GetMarketingPreferenceDTO;
-import com.tarabut.createpreference.dto.PostMarketingPreferenceDTO;
-import com.tarabut.createpreference.dto.UpdateMarketingPreferenceDTO;
+import com.rama.createpreference.dto.GetMarketingPreferenceDTO;
+import com.rama.createpreference.dto.PostMarketingPreferenceDTO;
+import com.rama.createpreference.dto.UpdateMarketingPreferenceDTO;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.tarabut.createpreference.dto;
+package com.rama.createpreference.dto;
 
 import lombok.Builder;
 import lombok.Getter;

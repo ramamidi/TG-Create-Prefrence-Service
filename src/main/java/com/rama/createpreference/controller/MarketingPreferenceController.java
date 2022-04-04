@@ -1,10 +1,10 @@
-package com.tarabut.createpreference.controller;
+package com.rama.createpreference.controller;
 
-import com.tarabut.createpreference.dto.GetMarketingPreferenceDTO;
-import com.tarabut.createpreference.dto.PostMarketingPreferenceDTO;
-import com.tarabut.createpreference.dto.UpdateMarketingPreferenceDTO;
-import com.tarabut.createpreference.entity.MarketingPreference;
-import com.tarabut.createpreference.service.MarketingPreferenceService;
+import com.rama.createpreference.dto.GetMarketingPreferenceDTO;
+import com.rama.createpreference.dto.PostMarketingPreferenceDTO;
+import com.rama.createpreference.dto.UpdateMarketingPreferenceDTO;
+import com.rama.createpreference.entity.MarketingPreference;
+import com.rama.createpreference.service.MarketingPreferenceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

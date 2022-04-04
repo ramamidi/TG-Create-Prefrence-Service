@@ -1,4 +1,4 @@
-package com.tarabut.createpreference;
+package com.rama.createpreference;
 
 import com.google.common.base.Predicates;
 import org.springframework.boot.SpringApplication;

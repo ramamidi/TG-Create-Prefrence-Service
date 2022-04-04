@@ -1,6 +1,6 @@
-package com.tarabut.createpreference.entity;
+package com.rama.createpreference.entity;
 
-import com.tarabut.createpreference.dto.GetMarketingPreferenceDTO;
+import com.rama.createpreference.dto.GetMarketingPreferenceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
